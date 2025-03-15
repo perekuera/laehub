@@ -1,0 +1,13 @@
+# Ignore .env file
+db/.env
+
+# Maven target directory
+target/
+
+# Eclipse specific files
+.classpath
+.project
+.settings/
+
+# VS Code specific files
+.vscode/
