@@ -39,6 +39,9 @@ public class DatabaseConfig {
     @Value("${spring.jpa.hibernate.ddl-auto}")
     private String ddlAuto;
 
+    @Value("${spring.jpa.properties.hibernate.default_schema}")
+    private String defaultSchema;
+
     @Bean
     public DataSource dataSource() {
         return DataSourceBuilder.create()
@@ -74,6 +77,7 @@ public class DatabaseConfig {
         properties.setProperty("hibernate.dialect", hibernateDialect);
         properties.setProperty("hibernate.show_sql", String.valueOf(showSql));
         properties.setProperty("hibernate.hbm2ddl.auto", ddlAuto);
+        properties.setProperty("hibernate.default_schema", defaultSchema);
         return properties;
     }
 }
