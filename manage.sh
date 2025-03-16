@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Set environment variables
+export $(cat ./db/.env | xargs)
+
 # Create DB
 if [ "$1" = "create" ]; then
     docker-compose -f ./db/docker-compose.yml down -v
