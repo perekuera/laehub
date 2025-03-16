@@ -5,11 +5,15 @@ import java.util.UUID;
 
 import org.hibernate.annotations.UuidGenerator;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "test_dummies")
 public class TestDummy {
 
     @Id
@@ -21,6 +25,7 @@ public class TestDummy {
 
     private String description;
 
+    @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false, nullable = false)
     private LocalDateTime createdAt;
 
     public TestDummy() {
@@ -30,6 +35,13 @@ public class TestDummy {
         this.name = name;
         this.description = description;
         this.createdAt = createdAt;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        if (this.createdAt == null) {
+            this.createdAt = LocalDateTime.now();
+        }
     }
 
     public UUID getId() {
