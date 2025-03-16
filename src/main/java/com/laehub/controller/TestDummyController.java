@@ -18,7 +18,7 @@ import com.laehub.exception.ResourceNotFoundException;
 import com.laehub.service.TestDummyService;
 
 @RestController
-@RequestMapping("/api/testdummies")
+@RequestMapping("/testdummies")
 public class TestDummyController {
 
     @Autowired
